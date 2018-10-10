@@ -12,7 +12,7 @@ body {
 
 img#petal {
   min-width: 300px;
-  max-width: 1300px;
+  max-width: 1100px;
   width: 60%;
   height: auto;
   position: absolute;
@@ -20,6 +20,7 @@ img#petal {
   top: 50%;
   transform: translate(-50%, -50%);
   background: transparent;
+  will-change: transform;
   transition: transform .6s;
 }
 
