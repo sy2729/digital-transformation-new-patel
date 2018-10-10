@@ -8,6 +8,8 @@ body {
   background: transparent no-repeat center;
   background-image: url(./bg-blur.jpg);
   background-size: cover;
+  width: 100%;
+  overflow: hidden;
 }
 
 img#petal {
@@ -32,6 +34,7 @@ img#petal.scaled {
 
 
 .panel {
+  z-index: 3;
   width: 200px;
   height: 400px;
   background: #f4f4f4;
