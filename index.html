@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>New Digital Transformation Petal</title>
 
   <link rel="stylesheet" href="./index.css">
@@ -108,13 +108,27 @@
     // the core function ends------------------------------------------
 
 
+
+
+
+
+
+  // detect high-resolution image loading and replace the blurred one;
+  let img = document.createElement('img');
+  let url = './bg-clear.jpg';
+  img.src = url;
+  img.onload = function() {
+    $('body').css('background-image', `url(${url})`)
+  }
+
+
     function shrinkPetal(){
       $petal.addClass('scaled');
       $('.panel').addClass('show');
     }
 
     // detectPageClick
-    $('body').click((i)=>{
+    $('body').on('touchstart mousedown', (i)=>{
       $petal.removeClass('scaled');
       $('.panel').removeClass('show');
     })
