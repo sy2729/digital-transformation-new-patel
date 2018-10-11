@@ -10,6 +10,7 @@ body {
   background-size: cover;
   width: 100%;
   overflow: hidden;
+  position: fixed;
 }
 
 img#petal {
