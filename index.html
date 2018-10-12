@@ -64,10 +64,10 @@
     })
 
     //recalculate the map area when resize the page
-    window.addEventListener('resize', function(){
+    window.addEventListener('resize', _debounce(function(){
       currentWidth = parseStyle($petal, 'width')
       calculateEachSection($areas, width, currentWidth)
-    })
+    }, 500))
 
     function calculateEachSection (nodes, width, currentWidth){
       if(original_coordinates.length === 0) {
@@ -103,6 +103,19 @@
       let value = node.css(property);
       value = parseFloat(value.replace(/px|%/, ''));
       return value;
+    }
+
+
+
+    // debounce function for performance
+    function _debounce(fn,wait){
+        var timer = null;
+        return function(){
+            clearTimeout(timer)
+            timer = setTimeout(()=>{
+                fn()
+            },wait)
+        }
     }
 
     // the core function ends------------------------------------------
