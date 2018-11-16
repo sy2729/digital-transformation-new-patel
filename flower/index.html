@@ -217,483 +217,405 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script>
 
-var panelPreData = [
-    {
-        name: 'offer',
-        content: '- All the activities related to our customers, the way we interact with them, our various innovative and strategic offerings, and how we become a more valuable partner for our clients’ business and growth. ',
-        color: '#563483'
-    },
-    {
-        name: 'delivery',
-        content: '- Projects that are set to transform how Atos operates its day-to-day, helping to provide efficient and optimized results to our customers.',
-        color: '#4AA6AA'
-    },
-    {
-        name: 'employee',
-        content: '- This domain includes all projects that are focused on improving the Employee Experience and engagement. ',
-        color: '#913C86',
-    },
-    {
-        name: 'enablers',
-        content: '- All initiatives that the organization will implement to support and facilitate the changes needed for a successful Digital Transformation.',
-        color: '#3076B5',
-    },
-]
+!function panelInit() {
 
-var $panel_pre_categories = $('.panel-pre-categories');
-var $panel_legend = $('.panel .legend');
+    //the data shown before user click - the four categories list
+    var panelPreData = [
+        {
+            name: 'offer',
+            content: '- All the activities related to our customers, the way we interact with them, our various innovative and strategic offerings, and how we become a more valuable partner for our clients’ business and growth. ',
+            color: '#563483'
+        },
+        {
+            name: 'delivery',
+            content: '- Projects that are set to transform how Atos operates its day-to-day, helping to provide efficient and optimized results to our customers.',
+            color: '#4AA6AA'
+        },
+        {
+            name: 'employee',
+            content: '- This domain includes all projects that are focused on improving the Employee Experience and engagement. ',
+            color: '#913C86',
+        },
+        {
+            name: 'enablers',
+            content: '- All initiatives that the organization will implement to support and facilitate the changes needed for a successful Digital Transformation.',
+            color: '#3076B5',
+        },
+    ]
 
-function createInitContent() {
-    panelPreData.forEach((i)=>{
-        var div = $('<div></div>').addClass('each-category').addClass(i.name);
-        var span1 = $('<span></span>').text(i.name);
-        var span2 = $('<span></span>').text(i.content);
-        div.append(span1).append(span2)
-        $panel_pre_categories.append(div)
-    })
-}
-createInitContent()
+    var $panel_pre_categories = $('.panel-pre-categories');
+    var $panel_legend = $('.panel .legend');
 
-
-// the core function starts------------------------------------------
-    // type 1 - Other strategic project | type 2 - Quick wins
-var panelData = [
-    {
-        name: 'digital Portfolio',
-        category: 'offer',
-        intro: 'Digital Portfolio',
-        color: '#563483',
-        points: [
-            {
-                name: 'IoT',
-                type: 1,
-            },
-            {
-                name: 'AI and Machine Learning',
-                type: 1
-            },
-            {
-                name: 'Cybersecurity',
-                type: 1,
-            },
-            {
-                name: 'Blockchain',
-                type: 1
-            },
-            {
-                name: 'Digital Twin',
-                type: 2
-            },
-            {
-                name: 'RPA Automation',
-                type: 2
-            },
-            {
-                name: 'Next Generation Network Services',
-                type: 2
-            },      
-        ]
-    },
-    {
-        name: 'client Interface',
-        category: 'offer',
-        intro: 'Client Interface + CX',
-        color: '#563483',
-        points: [
-            {
-                name: 'RFP Digitalization',
-                type: 1,
-            },
-            {
-                name: 'Enterprise Customer Knowledge',
-                type: 1,
-            },
-            {
-                name: 'Customer Collaboration Platform',
-                type: 1,
-            },
-            {
-                name: 'Enhanced SalesForce Analytics',
-                type: 2,
-            },
-            {
-                name: 'Portable BTIC',
-                type: 2,
-            },
-            {
-                name: 'Pricing and Deal Scoring Engine',
-                type: 2,
-            },  
-            {
-                name: 'Customer centricity',
-                type: 2,
-            },  
-        ]
-    },
-    {
-        name: 'WFM',
-        category: 'delivery',
-        intro: 'Workforce Management',
-        color: '#4AA6AA',
-        points: [
-            {
-                name: 'Profile Matcher',
-                type: 1,
-            },
-            {
-                name: 'Engage',
-                type: 1,
-            },
-            {
-                name: 'TaMARA',
-                type: 1,
-            },
-            {
-                name: 'Enhanced Capacity Management and Supply/Demand Forecasting',
-                type: 2,
-            },
-            {
-                name: 'Co-Creation and External Gig Economy',
-                type: 2,
-            },
-            {
-                name: 'Timesheet productivity',
-                type: 2,
-            },
-        ]
-    },
-    {
-        name: 'KM',
-        category: 'delivery',
-        intro: 'Knowledge Management',
-        color: '#4AA6AA',
-        points: [
-            {
-                name: 'Knowledge Academy',
-                type: 1,
-            },
-        ]
-    },
-    {
-        name: 'Delivery',
-        category: 'delivery',
-        intro: 'Delivery Digitalization',
-        color: '#4AA6AA',
-        points: [
-            {
-                name: 'ITSM Automation',
-                type: 1,
-            },
-            {
-                name: 'Service Desk Automation',
-                type: 1,
-            },
-            {
-                name: 'Automation of Security Activities',
-                type: 1,
-            },
-        ]
-    },
-    {
-        name: 'DWP',
-        category: 'employee',
-        intro: 'Digital Workplace',
-        color: '#913C86',
-        points: [
-            {
-                name: 'Mobile Digital Workplace',
-                type: 1,
-            },
-            {
-                name: 'Employee Portal 2.0',
-                type: 1,
-            },
-            {
-                name: 'SAP S/4HANA',
-                type: 2,
-            },
-            {
-                name: 'Next Generation Platforms and BYOD',
-                type: 2,
-            },
-            {
-                name: 'Omnichannel Cross-Collaboration using Circuit',
-                type: 2,
-            },
-            {
-                name: 'Atos Virtual Agent',
-                type: 2,
-            },
-        ]
-    },
-    {
-        name: 'Internal Process',
-        category: 'employee',
-        intro: 'Internal Process',
-        color: '#913C86',
-        points: [
-            {
-                name: 'Contract Leakage Analytics',
-                type: 1,
-            },
-            {
-                name: 'Contract and Legal Portal and Database',
-                type: 1,
-            },
-            {
-                name: 'Expense and travel digitalization',
-                type: 2,
-            },
-            {
-                name: 'Digital Sourcing for Procurement Platform',
-                type: 2,
-            },
-            {
-                name: 'Automated Invoice-To-Cash Process',
-                type: 2,
-            },
-            {
-                name: 'Collaborative Budget, Rally Platformt',
-                type: 2,
-            },
-        ]
-    },
-    {
-        name: 'Digital Marcom',
-        category: 'enablers',
-        intro: 'Digital Marketing and Communication',
-        color: '#3076B5',
-        points: [
-            {
-                name: 'Digital Marketing and Communication',
-                type: 2
-            }
-        ]
-    },
-    {
-        name: 'Culture',
-        category: 'enablers',
-        intro: 'Culture',
-        color: '#3076B5',
-        points: [
-            {
-                name: 'Behavior Transformation',
-                type: 2,
-            },
-            {
-                name: 'Hackathons and Virtual Bootcamps',
-                type: 1,
-            },
-            {
-                name: 'Agile Culture',
-                type: 1,
-            },
-            {
-                name: 'Co-Working Spaces and Digital Labs',
-                type: 1,
-            },
-            {
-                name: 'Atos Brand Ambassadors',
-                type: 2,
-            },
-            {
-                name: 'Cross-division Squad Teams',
-                type: 2,
-            },
-            {
-                name: 'Innovation Policy and Governance',
-                type: 2,
-            },
-        ]
-    },
-    {
-        name: 'Talent',
-        category: 'enablers',
-        intro: 'Talent',
-        color: '#3076B5',
-        points: [
-            {
-                name: 'Mobile Performance and Appraisal',
-                type: 1
-            },
-            {
-                name: 'Recruiting Digitalization',
-                type: 1
-            },
-            {
-                name: 'Manager Scorecard',
-                type: 1
-            },
-        ]
-    },
-    {
-        name: 'Data and Analytics',
-        category: 'enablers',
-        intro: 'Data and Analytics',
-        color: '#3076B5',
-        points: [
-            {
-                name: 'Enterprise Datalake',
-                type: 1
-            }
-        ]
-    },
-    {
-        name: 'Org. and Govern',
-        category: 'enablers',
-        intro: 'Organization and Governance',
-        color: '#3076B5',
-        points: [
-            {
-                name: 'Startup Acceleration Partnership Program',
-                type: 2,
-            },
-            {
-                name: 'Verticalized Client Consulting Interfaces',
-                type: 1,
-            },
-        ]
+    function createInitContent() {
+        panelPreData.forEach((i)=>{
+            var div = $('<div></div>').addClass('each-category').addClass(i.name);
+            var span1 = $('<span></span>').text(i.name);
+            var span2 = $('<span></span>').text(i.content);
+            div.append(span1).append(span2)
+            $panel_pre_categories.append(div)
+        })
     }
-];
-    var panelFlower = function(data, fn) {
-    var $petal;
-        var areas;
-        var currentWidth;
-        var width;
-        var original_coordinates = [];
+    createInitContent()
 
-        // calculate the map area when the page first load
-        $(document).ready(function(){
-            $petal = $("#petal");
-            $areas = $('#Map > area')
-        
-            $areas.each((index, i)=>{
-                $(i).attr({
-                'data-attr': panelData[index].name, 
-                'alt': panelData[index].name,
-                'title': panelData[index].intro,
-                'data-color': panelData[index].color,
+
+    // the core function starts------------------------------------------
+        // type 1 - Other strategic project | type 2 - Quick wins
+    var panelData = [
+        {
+            name: 'digital Portfolio',
+            category: 'offer',
+            intro: 'Digital Portfolio',
+            color: '#563483',
+            points: [
+                {
+                    name: 'IoT',
+                    type: 1,
+                },
+                {
+                    name: 'AI and Machine Learning',
+                    type: 1
+                },
+                {
+                    name: 'Cybersecurity',
+                    type: 1,
+                },
+                {
+                    name: 'Blockchain',
+                    type: 1
+                },     
+            ]
+        },
+        {
+            name: 'client Interface',
+            category: 'offer',
+            intro: 'Client Interface + CX',
+            color: '#563483',
+            points: [
+                {
+                    name: 'RFP Digitalization',
+                    type: 1,
+                },
+                {
+                    name: 'Enterprise Customer Knowledge',
+                    type: 1,
+                },
+                {
+                    name: 'Customer Collaboration Platform',
+                    type: 1,
+                },
+            ]
+        },
+        {
+            name: 'WFM',
+            category: 'delivery',
+            intro: 'Workforce Management',
+            color: '#4AA6AA',
+            points: [
+                {
+                    name: 'Profile Matcher',
+                    type: 2,
+                },
+                {
+                    name: 'Engage',
+                    type: 2,
+                },
+                {
+                    name: 'TaMARA',
+                    type: 2,
+                },
+            ]
+        },
+        {
+            name: 'KM',
+            category: 'delivery',
+            intro: 'Knowledge Management',
+            color: '#4AA6AA',
+            points: [
+                {
+                    name: 'Knowledge Academy',
+                    type: 1,
+                },
+            ]
+        },
+        {
+            name: 'Delivery',
+            category: 'delivery',
+            intro: 'Delivery Digitalization',
+            color: '#4AA6AA',
+            points: [
+                {
+                    name: 'ITSM Automation',
+                    type: 1,
+                },
+                {
+                    name: 'Service Desk Automation',
+                    type: 1,
+                },
+                {
+                    name: 'Automation of Security Activities',
+                    type: 1,
+                },
+            ]
+        },
+        {
+            name: 'DWP',
+            category: 'employee',
+            intro: 'Digital Workplace',
+            color: '#913C86',
+            points: [
+                {
+                    name: 'Mobile Digital Workplace',
+                    type: 2,
+                },
+                {
+                    name: 'Employee Portal 2.0',
+                    type: 2,
+                },
+                {
+                    name: 'SAP S/4HANA',
+                    type: 1,
+                },
+            ]
+        },
+        {
+            name: 'Internal Process',
+            category: 'employee',
+            intro: 'Internal Process',
+            color: '#913C86',
+            points: [
+                {
+                    name: 'Contract Leakage Analytics',
+                    type: 1,
+                },
+                {
+                    name: 'Contract and Legal Portal and Database',
+                    type: 1,
+                },
+            ]
+        },
+        {
+            name: 'Digital Marcom',
+            category: 'enablers',
+            intro: 'Digital Marketing and Communication',
+            color: '#3076B5',
+            points: [
+                {
+                    name: 'Digital Marketing and Communication',
+                    type: 2
+                }
+            ]
+        },
+        {
+            name: 'Culture',
+            category: 'enablers',
+            intro: 'Culture',
+            color: '#3076B5',
+            points: [
+                {
+                    name: 'Hackathons and Virtual Bootcamps',
+                    type: 1,
+                },
+                {
+                    name: 'Agile Culture',
+                    type: 1,
+                },
+                {
+                    name: 'Digital Labs as Co-Working Spaces',
+                    type: 1,
+                },
+            ]
+        },
+        {
+            name: 'Talent',
+            category: 'enablers',
+            intro: 'Talent',
+            color: '#3076B5',
+            points: [
+                {
+                    name: 'Mobile Performance and Appraisal',
+                    type: 1
+                },
+                {
+                    name: 'Recruiting Digitalization',
+                    type: 1
+                },
+                {
+                    name: 'Manager Scorecard',
+                    type: 1
+                },
+            ]
+        },
+        {
+            name: 'Data and Analytics',
+            category: 'enablers',
+            intro: 'Data and Analytics',
+            color: '#3076B5',
+            points: [
+                {
+                    name: 'Enterprise Datalake',
+                    type: 1
+                }
+            ]
+        },
+        {
+            name: 'Org. and Govern',
+            category: 'enablers',
+            intro: 'Organization and Governance',
+            color: '#3076B5',
+            points: [
+                {
+                    name: 'Startup Acceleration Partnership Program',
+                    type: 2,
+                },
+                {
+                    name: 'Verticalized Client Consulting Interfaces',
+                    type: 1,
+                },
+            ]
+        }
+    ];
+        var panelFlower = function(data, fn) {
+        var $petal;
+            var areas;
+            var currentWidth;
+            var width;
+            var original_coordinates = [];
+
+            // calculate the map area when the page first load
+            $(document).ready(function(){
+                $petal = $("#petal");
+                $areas = $('#Map > area')
+            
+                $areas.each((index, i)=>{
+                    $(i).attr({
+                    'data-attr': panelData[index].name, 
+                    'alt': panelData[index].name,
+                    'title': panelData[index].intro,
+                    'data-color': panelData[index].color,
+                    })
                 })
+
+                // width = $petal[0].naturalWidth;
+                width = 3685;
+                // wait until the panel is loaded to get its corrdinates and height to do the calculation,
+                //otherwise the calculation might break at the first time
+                var img = $('<img>').attr('src','https://atos.net/wp-content/uploads/2018/11/atos-digital-transformation-program-flower-panel.png');
+                img[0].onload = function(){
+                    currentWidth = parseStyle($petal, 'width')
+                    calculateEachSection($areas, width, currentWidth)
+
+                    // add eventListener for Petal when being clicked on
+                    $areas.click((i)=>{
+                        i.preventDefault();
+                        i.stopPropagation();
+                        // here to input all the events for each individual petals
+                        let content = $(i.target).attr('data-attr')
+                            fn(content)
+                    })
+                }
             })
 
-            // width = $petal[0].naturalWidth;
-            width = 3685;
-            var img = $('<img>').attr('src','https://res.cloudinary.com/shuaiyuan/image/upload/v1541618020/atos-temp/test.png');
-            img[0].onload = function(){
+            //recalculate the map area when resize the page
+            window.addEventListener('resize', _debounce(function(){
                 currentWidth = parseStyle($petal, 'width')
                 calculateEachSection($areas, width, currentWidth)
+            }, 500))
 
-                // add eventListener for Petal when being clicked on
-                $areas.click((i)=>{
-                    i.preventDefault();
-                    i.stopPropagation();
-                    // here to input all the events for each individual petals
-                    let content = $(i.target).attr('data-attr')
-                        fn(content)
-                })
+            function calculateEachSection (nodes, width, currentWidth){
+                if(original_coordinates.length === 0) {
+                    nodes.each((index, i)=>{
+                        let $eachArea = $(i);        
+                        let newAttr;
+                        let attr = $eachArea.attr('coords');
+                        original_coordinates.push(attr);
+                        newAttr = calculateCoords(attr, width, currentWidth);
+                        $eachArea.attr('coords', newAttr)        
+                    })
+                }else {
+                    nodes.each((index, i)=>{
+                    let $eachArea = $(i);   
+                    let attr = original_coordinates[index];
+                    let newAttr = calculateCoords(attr, width, currentWidth); 
+                    $eachArea.attr('coords', newAttr)       
+                    })
+
+                }
             }
+
+            function calculateCoords (data, width, currentWidth){
+                let attr = data.split(',')
+                let newAttr = attr.map((i)=>{
+                    return ((currentWidth * i) / width).toFixed(2);
+                    })
+                newAttr = newAttr.join(', ')
+                return newAttr
+                }
+
+                function parseStyle (node, property) {
+                let value = node.css(property);
+                value = parseFloat(value.replace(/px|%/, ''));
+                return value;
+            }
+
+
+
+            // debounce function for performance
+            function _debounce(fn,wait){
+                var timer = null;
+                return function(){
+                    clearTimeout(timer)
+                    timer = setTimeout(()=>{
+                        fn()
+                    },wait)
+                }
+            }
+        }
+
+        function triggerFunction(data) {
+            // alert('you clicked the section -------' + data)
+            $panel_pre_categories.text('').removeClass('active');
+            $panel_legend.addClass('active');
+            
+            panelData.forEach((i, index)=>{
+                let points;
+                if(i.name === data) {
+                    points = i.points;
+                    
+                    let title = $('<h2></h2>').text(index + 1 + '. ' + i.intro).css('color', i.color);
+                    let pointsEl = $('<ul></ul>').addClass(i.category);
+                    points.forEach((j)=>{
+                        let li = $('<li></li>').text(j.name);
+                        j.type === 1?li.addClass('strategy list'):li.addClass('qwins list');
+                        pointsEl.append(li);
+                    });
+                    $panel_pre_categories.append(title).append(pointsEl).addClass('active')
+                    $panel_pre_categories.on('animationend', function(){
+                        $(this).removeClass('active')                   
+                    })
+                }
+
+            })
+        }
+
+
+        // click body to return
+        function returnBack() {
+            $panel_pre_categories.text('').removeClass('active');
+            $panel_legend.removeClass('active');
+            createInitContent();
+        }
+
+        $panel_pre_categories.on('click', function(e) {
+            e.stopPropagation();
+        });
+        $(document.body).on('click', function() {
+            returnBack();
         })
 
-        //recalculate the map area when resize the page
-        window.addEventListener('resize', _debounce(function(){
-            currentWidth = parseStyle($petal, 'width')
-            calculateEachSection($areas, width, currentWidth)
-        }, 500))
 
-        function calculateEachSection (nodes, width, currentWidth){
-            if(original_coordinates.length === 0) {
-                nodes.each((index, i)=>{
-                    let $eachArea = $(i);        
-                    let newAttr;
-                    let attr = $eachArea.attr('coords');
-                    original_coordinates.push(attr);
-                    newAttr = calculateCoords(attr, width, currentWidth);
-                    $eachArea.attr('coords', newAttr)        
-                })
-            }else {
-                nodes.each((index, i)=>{
-                let $eachArea = $(i);   
-                let attr = original_coordinates[index];
-                let newAttr = calculateCoords(attr, width, currentWidth); 
-                $eachArea.attr('coords', newAttr)       
-                })
-
-            }
-        }
-
-        function calculateCoords (data, width, currentWidth){
-            let attr = data.split(',')
-            let newAttr = attr.map((i)=>{
-                return ((currentWidth * i) / width).toFixed(2);
-                })
-            newAttr = newAttr.join(', ')
-            return newAttr
-            }
-
-            function parseStyle (node, property) {
-            let value = node.css(property);
-            value = parseFloat(value.replace(/px|%/, ''));
-            return value;
-        }
-
-
-
-        // debounce function for performance
-        function _debounce(fn,wait){
-            var timer = null;
-            return function(){
-                clearTimeout(timer)
-                timer = setTimeout(()=>{
-                    fn()
-                },wait)
-            }
-        }
-    }
-
-    function triggerFunction(data) {
-        // alert('you clicked the section -------' + data)
-        $panel_pre_categories.text('').removeClass('active');
-        $panel_legend.addClass('active');
-        
-        panelData.forEach((i, index)=>{
-            let points;
-            if(i.name === data) {
-                points = i.points;
-                
-                let title = $('<h2></h2>').text(index + 1 + '. ' + i.intro).css('color', i.color);
-                let pointsEl = $('<ul></ul>').addClass(i.category);
-                points.forEach((j)=>{
-                    let li = $('<li></li>').text(j.name);
-                    j.type === 1?li.addClass('strategy list'):li.addClass('qwins list');
-                    pointsEl.append(li);
-                });
-                $panel_pre_categories.append(title).append(pointsEl).addClass('active')
-                $panel_pre_categories.on('animationend', function(){
-                    $(this).removeClass('active')                   
-                })
-            }
-
-        })
-    }
-
-
-    // click body to return
-    function returnBack() {
-        $panel_pre_categories.text('').removeClass('active');
-        $panel_legend.removeClass('active');
-        createInitContent();
-    }
-
-    $panel_pre_categories.on('click', function(e) {
-        e.stopPropagation();
-    });
-    $(document.body).on('click', function() {
-        returnBack();
-    })
-
-
-    panelFlower(panelData, triggerFunction)
-// the core function ends------------------------------------------
+        panelFlower(panelData, triggerFunction)
+    // the core function ends------------------------------------------
+}()
   </script>
 </body>
 </html>
